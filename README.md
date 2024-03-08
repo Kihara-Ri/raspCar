@@ -8,3 +8,8 @@
 
 1. `ROBOT_CONTROL.py`用于设置对树莓派小车的底层控制，包括定义移动函数和舵机移动
 2. `keyboard_control.py`用于设置键盘控制，调用上面文件的控制函数并初始化一个`curses`环境用于打印指令
+
+注意，需要引入下面的依赖
+```bash
+pip install smbus, RPi.GPIO
+```
