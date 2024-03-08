@@ -89,7 +89,7 @@ class PCA9685:
 
 
 # 控制机器人库
-class LOBOROBOT():
+class ROBOT():
     def __init__(self):
         self.PWMA = 0
         self.AIN1 = 2

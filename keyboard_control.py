@@ -1,9 +1,9 @@
 import curses
-from LOBOROBOT import LOBOROBOT
+from ROBOT_CONTROL import ROBOT
 import time
 
-# 初始化小车
-robot = LOBOROBOT()
+# 初始化机器人底层控制
+robot = ROBOT()
 
 def control_car(stdscr, key, current_line, max_y):
     message = ""
