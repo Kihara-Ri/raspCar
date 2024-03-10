@@ -2,6 +2,26 @@
 
 本树莓派小车的功能实现使用了尽可能少的代码量，尽可能精简地完成需要的功能
 
+## From scratch
+
+烧录操作系统[https://www.raspberrypi.com/software/](https://www.raspberrypi.com/software/)
+
+选择`lite 64 bit`版本
+
+ssh连接
+
+以下命令查询局域网下树莓派的ip地址
+```bash
+arp -a
+```
+
+安装`pip`命令
+
+```bash
+sudo apt-get update
+sudo apt install python3-pip
+```
+
 ## movement control
 
 运动控制使用两个文件组成
