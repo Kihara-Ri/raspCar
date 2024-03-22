@@ -20,7 +20,7 @@ def generate_frames():
 @app.route('/')
 def index():
     # 定义主页
-    return render_template_string(open('./EXPERIMENT/index.html').read())# 启用html模板
+    return render_template_string(open('./EXPERIMENT/flask-app/templates/index.html').read())# 启用html模板
 
 @app.route('/video')
 def video():

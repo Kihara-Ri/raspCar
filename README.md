@@ -181,3 +181,13 @@ pip install -i https://mirrors.aliyun.com/pypi/simple opencv-python-headless
 ```bash
 pip install flask
 ```
+
+`flask-app`结构：
+```bash
+flask-app/
+├── app.py
+├── static/
+│   └── styles.css
+└── templates/
+    └── index.html 
+```
