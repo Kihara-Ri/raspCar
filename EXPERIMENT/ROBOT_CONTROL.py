@@ -1,3 +1,6 @@
+'''
+这个库记录了树莓派的底层控制关系，并对电机运动作了函数的封装
+'''
 import time
 import math
 import smbus
@@ -84,8 +87,6 @@ class PCA9685:
       self.setPWM(channel, 0, 4095)
     else:
       self.setPWM(channel, 0, 0)
-  
-
 
 
 # 控制机器人库

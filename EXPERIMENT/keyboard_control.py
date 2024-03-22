@@ -9,26 +9,12 @@ pwm = Adafruit_PCA9685.PCA9685(busnum = 1)
 servo_min = 150  # Min pulse length out of 4096
 servo_max = 600  # Max pulse length out of 4096
 
-def set_servo_pulse(channel, pulse):
-    pulse_length = 1000000    # 1,000,000 us per second
-    pulse_length //= 60       # 60 Hz
-    print('{0}us per period'.format(pulse_length))
-    pulse_length //= 4096     # 12 bits of resolution
-    print('{0}us per bit'.format(pulse_length))
-    pulse *= 1000
-    pulse //= pulse_length
-    pwm.set_pwm(channel, 0, pulse)
-
-def set_servo_angle(channel,angle):
-    angle=4096*((angle*11)+500)/20000
-    pwm.set_pwm(channel,0,int(angle))
-
 # 频率设置为50hz，适用于舵机系统。
 pwm.set_pwm_freq(50)
 angle_b = 90
 angle_t = 90
-set_servo_angle(9,90)  # 底部舵机 90
-set_servo_angle(10,90)  # 顶座舵机 90 
+robot.set_servo_angle(9,90)  # 底部舵机 90
+robot.set_servo_angle(10,90)  # 顶座舵机 90 
 
 def control_car(stdscr, key, current_line, max_y):
     global angle_b
@@ -53,19 +39,19 @@ def control_car(stdscr, key, current_line, max_y):
         # 舵机
     elif key == ord('h'):
         angle_b = angle_b - 5
-        set_servo_angle(9, angle_b)
+        robot.set_servo_angle(9, angle_b)
         message = f"current angle of bottom: {angle_b} "
     elif key == ord('l'):
         angle_b = angle_b + 5
-        set_servo_angle(9, angle_b)
+        robot.set_servo_angle(9, angle_b)
         message = f"current angle of bottom: {angle_b} "
     elif key == ord('j'):
         angle_t = angle_t - 5
-        set_servo_angle(10, angle_t)
+        robot.set_servo_angle(10, angle_t)
         message = f"current angle of top: {angle_t} "
     elif key == ord('k'):
         angle_t = angle_t + 5
-        set_servo_angle(10, angle_t)
+        robot.set_servo_angle(10, angle_t)
         message = f"current angle of top: {angle_t} "
 
     if message:
@@ -104,5 +90,6 @@ def main(stdscr):
     curses.nocbreak()
     curses.endwin()
 
+# 开启主函数
 curses.wrapper(main)
 
