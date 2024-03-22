@@ -158,5 +158,14 @@ source myenv/bin/activate
 
 注意，需要引入下面的依赖
 ```bash
-pip install smbus, RPi.GPIO
+pip install smbus RPi.GPIO Adafruit-PCA9685 opencv-python-headless
 ```
+如果下载缓慢导致报错，指定源：
+```bash
+pip install -i https://mirrors.aliyun.com/pypi/simple opencv-python-headless
+```
+运行`test_cv2.py`的代码，如果能够成功生成灰度图像，则说明安装成功
+
+## OpenCV
+
+在这里我们使用的是`headless`版本，`headless`版本的OpenCV是为了在没有图形界面的环境中使用而设计的，因此不包含任何与图形用户界面相关的函数，包括`imshow`和`waitKey`
