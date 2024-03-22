@@ -168,4 +168,16 @@ pip install -i https://mirrors.aliyun.com/pypi/simple opencv-python-headless
 
 ## OpenCV
 
-在这里我们使用的是`headless`版本，`headless`版本的OpenCV是为了在没有图形界面的环境中使用而设计的，因此不包含任何与图形用户界面相关的函数，包括`imshow`和`waitKey`
+在这里我们使用的是`opencv-python-headless`版本，`headless`版本的OpenCV是为了在没有图形界面的环境中使用而设计的，因此不包含任何与图形用户界面相关的函数，包括`imshow`和`waitKey`，因此我们需要用别的方法来看到摄像头的数据
+
+### 确保摄像头开启
+
+运行`video_cap.py`，如果能够看到`/src/caption.jpg`文件更新就说明摄像头正确开启并且采集了数据
+
+### 流式传输
+
+这里采用`http`协议，我们使用`flask`库来开启端口服务，这个库是用来打造轻量级服务的，然后让主机访问树莓派的ip对应的端口就可以成功看到摄像头采集的信息
+
+```bash
+pip install flask
+```

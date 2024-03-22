@@ -104,14 +104,5 @@ def main(stdscr):
     curses.nocbreak()
     curses.endwin()
 
-# Adjusted t_up function to have a default speed value
-def t_up(self, speed=50, t_time=0):
-    self.MotorRun(0, 'forward', speed)
-    self.MotorRun(1, 'forward', speed)
-    self.MotorRun(2, 'forward', speed)
-    self.MotorRun(3, 'forward', speed)
-    if t_time > 0:
-        time.sleep(t_time)
-
 curses.wrapper(main)
 

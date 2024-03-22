@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Stream with FPS</title>
+</head>
+
+<body>
+    <h1>视频流</h1>
+    <img src="/video" id="videoStream">
+    <div>FPS: <span id="fps"></span></div>
+
+    <script>
+        const videoElement = document.getElementById('videoStream');
+        let frameCount = 0;
+        let startTime = Date.now();
+        let fpsDisplay = document.getElementById('fps');
+
+        function calculateFPS() {
+            frameCount++;
+            const currentTime = Date.now();
+            const elapsedTime = (currentTime - startTime) / 1000; //转换为秒
+
+            if (elapsedTime > 1){//每秒更新一次
+                const fps = Math.round(frameCount / elapsedTime);
+                fpsDisplay.textContent = fps;
+                frameCount = 0;
+                startTime = currentTime;
+            }
+
+            requestAnimationFrame(calculateFPS);
+        }
+        calculateFPS();
+    </script>
+</body>
+</html>
