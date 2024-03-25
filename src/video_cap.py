@@ -36,21 +36,10 @@ while isRunning:
     if not ret:
         print("Can't receive frame (stream end?). Exiting ...")
         break
+    cv2.imwrite('./assets/caption.jpg', frame) # 为了确保正确执行，prompt在raspCar下
 
-    # 将帧显示在窗口中
-    # cv2.imshow('frame', frame)
-    cv2.imwrite('./src/caption.jpg', frame)
+    
  
 
 # 释放摄像头
 cap.release()
-
-# sender = imagezmq.ImageSender(connect_to="tcp://172.20.10.5:5555")
-# cap = cv2.VideoCapture(0)
-
-# while True:
-#     ret, frame = cap.read()
-#     if not ret:
-#         print("Failed to capture image")
-#         break
-#     sender.send_image("Raspberry Pi Camera", frame)

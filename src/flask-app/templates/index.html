@@ -3,37 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Video Stream with FPS</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <div class="container">
         <h1>视频流</h1>
-        <img src="/video" id="videoStream">
-        <div>FPS: <span id="fps"></span></div>
+        <img src="/video" id="videoStream"> <!--服务器启动的时候会自动生成这个文件-->
     </div>
 
-    <script>
-        const videoElement = document.getElementById('videoStream');
-        let frameCount = 0;
-        let startTime = Date.now();
-        let fpsDisplay = document.getElementById('fps');
-
-        function calculateFPS() {
-            frameCount++;
-            const currentTime = Date.now();
-            const elapsedTime = (currentTime - startTime) / 1000; //转换为秒
-
-            if (elapsedTime > 1){//每秒更新一次
-                const fps = Math.round(frameCount / elapsedTime);
-                fpsDisplay.textContent = fps;
-                frameCount = 0;
-                startTime = currentTime;
-            }
-
-            requestAnimationFrame(calculateFPS);
-        }
-        calculateFPS();
-    </script>
 </body>
 </html>

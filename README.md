@@ -210,18 +210,38 @@ import time
 
 cap = cv2.VideoCapture(0)
 
-desired_fps = 30
 frame_interval = 1.0 / desired_fps # 帧间隔时间
+freq = cv2.getTickFrequency()
+frame_rate_calc = 1 # 真实帧率
 
-while True:
-    start_time = time.time()
-    ret, frame = cap.read()
-    if not ret:
-      break
-    # 计算需要等待的时间
-    wait_time = max(0, frame_interval - (time.time() - start_time))
-    time.sleep(wait_time) # 等待足够时间至需要显示下一帧
+global frame_rate_calc
+    while True:
+        t1 = cv2.getTickCount()
+        success, frame = cap.read() # success 是一个bool值
+        if not success:
+            break
+        else:
+        # -----------------
+        # 各种操作...
+        # -----------------
+        t2 = cv2.getTickCount()
+        
+        time_cost = (t2 - t1) / freq
+        frame_rate_calc = 1 / time_cost 
+        
+        wait_time = max (0, int(frame_interval - time_cost) * 1000) # 以毫秒计
+        time.sleep(wait_time) / 1000.0 # time.sleep 需要以秒为单位
 ```
+
+我们采用OpenCV自带的函数获取时钟频率，通过时钟振动和频率高精度计算时间间隔，从而调整到我们理想的帧率
+
+由于我们还需要将帧率随流式传输的画面实时显示出来，如果通过传输值从前端加载就会有些麻烦，因此我们考虑直接在python后端直接将FPS添加到`frame`图片上，一起传输给前端界面
+
+这就是最终得到的结果
+
+[img_caption_with_fps](https://mdstore.oss-cn-beijing.aliyuncs.com/markdown/202403252230835.png)
+
+
 ### 图像处理
 
 ## 多开
