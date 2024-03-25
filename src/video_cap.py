@@ -2,9 +2,6 @@ import cv2
 import signal
 import sys
 
-import imagezmq
-
-
 # 使用OpenCV捕捉视频流
 # 对于树莓派摄像头，通常使用0（或-1），如果有多个摄像头，可能需要尝试1、2等。
 cap = cv2.VideoCapture(0)
